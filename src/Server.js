@@ -24,7 +24,7 @@ const WHISPER_MODEL = "whisper-1";
 const googleTTS = new tts.TextToSpeechClient();
 
 const LANGUAGE_TO_CODE_MAP = {
-  en: {code: "en-US", name: "en-US-Neural2-I"},
+  en: {code: "en-US", name: "en-US-Wavenet-F"},
   ko: {code: "ko-KR", name: "ko-KR-Neural2-A"}
 };
 
