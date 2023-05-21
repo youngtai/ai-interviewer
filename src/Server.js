@@ -5,7 +5,8 @@ const {GoogleAuth} = require('google-auth-library');
 const tts = require('@google-cloud/text-to-speech');
 const {OpenAIApi, Configuration} = require("openai");
 const fs = require("fs");
-// const { Readable } = require('stream');
+const path = require("path");
+const os = require("os");
 
 // Must do the following for authorization:
 // export GOOGLE_APPLICATION_CREDENTIALS="/Path/to/credentials.json"
@@ -123,13 +124,10 @@ app.post("/transcribe", upload.single("audioFile"), async (request, response) =>
   const {language} = request.query;
   const conversation = JSON.parse(request.body.conversation);
   const audioFile = request.file;
-  const tempFile = "/Users/youngtai/work/temp-speech.mp3";
+
+  const tempFile = path.join(os.tmpdir(), 'temp-speech.mp3');
   fs.writeFileSync(tempFile, audioFile.buffer);
   const audioStream = fs.createReadStream(tempFile);
-
-  // const audioStream = new Readable();
-  // audioStream.push(audioFile.buffer);
-  // audioStream.push(null); // Signal the end of the stream
 
   try {
     console.log("Making /transcribe request");
@@ -143,7 +141,7 @@ app.post("/transcribe", upload.single("audioFile"), async (request, response) =>
   } catch (error) {
     console.error(error);
     response.writeHead(500, {'Content-Type': 'text/plain'});
-    response.write('Error occurred');
+    response.write('There was an error transcribing your voice.');
     response.end();
   }
 });
