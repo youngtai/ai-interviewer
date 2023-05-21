@@ -1,6 +1,6 @@
 import React from "react";
 import {Box} from "@mui/material";
-import JsonViewer from "../JsonViewer";
+import JsonViewer from "./JsonViewer";
 
 export default function GedcomXRawView({gxRecordData}) {
   const singleGxRecord = gxRecordData.data;

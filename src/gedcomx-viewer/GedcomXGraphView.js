@@ -16,7 +16,7 @@ import {
 } from "@mui/material";
 import {ExpandMore} from "@mui/icons-material";
 import {useTheme} from "@mui/material/styles";
-import JsonViewer from "../JsonViewer";
+import JsonViewer from "./JsonViewer";
 
 function GraphLegend() {
   return (
