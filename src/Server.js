@@ -8,9 +8,10 @@ const fs = require("fs");
 const path = require("path");
 const os = require("os");
 
-// Must do the following for authorization:
-// export GOOGLE_APPLICATION_CREDENTIALS="/Path/to/credentials.json"
-// export OPENAI_API_KEY=<your-api-key>
+// Must have the following environment variables for authorization in a .env file:
+// GOOGLE_APPLICATION_CREDENTIALS="/Path/to/credentials.json"
+// OPENAI_API_KEY=<your-api-key>
+require('dotenv').config()
 
 const app = express();
 const upload = multer();
@@ -25,7 +26,7 @@ const WHISPER_MODEL = "whisper-1";
 const googleTTS = new tts.TextToSpeechClient();
 
 const LANGUAGE_TO_CODE_MAP = {
-  en: {code: "en-US", name: "en-US-Wavenet-F"},
+  en: {code: "en-US", name: "en-US-Journey-F"},
   ko: {code: "ko-KR", name: "ko-KR-Neural2-A"}
 };
 
